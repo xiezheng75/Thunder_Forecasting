@@ -23,7 +23,12 @@ def get_weather_data(data_type, lang, rformat, save_dir):
     if response.status_code == 200:
         data = response.text
         df = pd.read_csv(StringIO(data))
+
+        # Set display options to show all rows and columns
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.width', None)
         print(df)
+
         # Create the directory if it doesn't exist
         os.makedirs(save_dir, exist_ok=True)
 
@@ -37,7 +42,7 @@ def get_weather_data(data_type, lang, rformat, save_dir):
         print(f"Failed to retrieve data: {response.status_code}")
 
 if __name__ == "__main__":
-    data_type = "LTMV"
+    data_type = "LHL"
     lang = "en"
     rformat = "csv"
     save_dir = r"G:\Other computers\My PC\PolyU_PhD\Thesis\Data"
